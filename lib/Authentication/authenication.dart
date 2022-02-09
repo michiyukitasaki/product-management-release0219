@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-import 'Authentication/login.dart';
-import 'Authentication/register.dart';
-// import 'package:e_shop/Config/config.dart';
+import 'register.dart';
+import 'login.dart';
+import 'register.dart';
+import 'package:eshop5nofirebase/Config/config.dart';
+import 'package:eshop5nofirebase/Authentication/register.dart';
 
 
 class AuthenticScreen extends StatefulWidget {
@@ -21,21 +21,21 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
           appBar: AppBar(
             flexibleSpace: Container(
               decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.pink,Colors.lightGreenAccent],
-              begin: const FractionalOffset(0.0, 1.0),
-              end:  const FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp,
-            )
-        ),
+                  gradient: LinearGradient(
+                    colors: [Colors.pink,Colors.lightGreenAccent],
+                    begin: const FractionalOffset(1.0, 0.0),
+                    end:  const FractionalOffset(0.0, 0.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp,
+                  )
+              ),
             ),
             title: Text(
               'e-Shop',
               style: TextStyle(
-                  fontSize: 55,
-                  color: Colors.white,
-                  fontFamily: 'Signatra'
+                fontSize: 55,
+                color: Colors.white,
+                fontFamily: 'Signatra'
               ),
             ),
             centerTitle: true,
@@ -43,7 +43,7 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
               tabs: [
                 Tab(
                   icon: Icon(Icons.lock,color: Colors.white,),
-                  text:'Login',),
+                text:'Login',),
                 Tab(
                   icon: Icon(Icons.perm_contact_calendar,color: Colors.white,),
                   text:'Register',),
@@ -55,9 +55,9 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
           body: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.pink,Colors.lightGreenAccent],
-                    begin: Alignment.topRight,
-                    end:  Alignment.bottomLeft
+                  colors: [Colors.pink,Colors.lightGreenAccent],
+                  begin: Alignment.topRight,
+                  end:  Alignment.bottomLeft
                 )
             ),
             child: TabBarView(

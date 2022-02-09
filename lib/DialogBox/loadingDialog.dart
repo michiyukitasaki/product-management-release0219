@@ -1,4 +1,4 @@
-import 'package:eshop5nofirebase/Widget/loadingWidget.dart';
+import 'package:eshop5nofirebase/Widgets/loadingWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
