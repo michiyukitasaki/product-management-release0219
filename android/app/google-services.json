@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "259648805362",
+    "project_id": "daiichipan0209",
+    "storage_bucket": "daiichipan0209.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259648805362:android:89f9897aafbfb012b3b36b",
+        "android_client_info": {
+          "package_name": "com.example.eshop5nofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259648805362-jhdgkr4j929stc2v3heega6kvofvu25p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFnejgtDBXqNM6ZYKuKQiejeanLFfPf2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259648805362-jhdgkr4j929stc2v3heega6kvofvu25p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "259648805362-kl8t784ao96m8e3v2f7im96ehqgd5qs4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.daiichipanProductDatabase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
