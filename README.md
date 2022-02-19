@@ -1,16 +1,9 @@
-# eshop5nofirebase
+IOS, Web用アプリです。
+商品データ管理用のデータベースですが、機密情報があるため要所ごとにデータを削除しております。
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+機能一覧は以下の通りです。
+①Googleスプレットシートに商品情報を記載
+②appから①の情報を読み込みFirebaseに画像、文字情報を保存
+③タイムライム形式でデータを表示
+④詳細ページ、お気に入りページにより詳細を確認
+⑤カレンダーによるスケジュール管理
