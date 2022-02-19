@@ -1,11 +1,12 @@
 
-import 'package:eshop5nofirebase/Calendar/event.dart';
+import 'package:eshop5nofirebase/Calendar/calendar_model/event.dart';
 import 'package:eshop5nofirebase/Widgets/customAppBar.dart';
+import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import 'event_provider.dart';
+import '../provider/event_provider.dart';
 
 class EventEditingPage extends StatefulWidget {
   final Event? event;
@@ -33,6 +34,11 @@ class _EventEditingPageState extends State<EventEditingPage> {
     if (widget.event == null){
       fromDate = DateTime.now();
       toDate = DateTime.now().add(Duration(hours: 2));
+    }else{
+      final event = widget.event!;
+      titleController.text = event.title;
+      fromDate = event.from;
+      toDate = event.to;
     }
   }
 
@@ -45,8 +51,24 @@ class _EventEditingPageState extends State<EventEditingPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.green,Colors.cyanAccent],
+            begin: const FractionalOffset(0.0, 0.0),
+            end:  const FractionalOffset(1.0, 0.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+          ),
+        ),
+      ),
+      title: Text(
+        '編集',
+        style: TextStyle(
+            fontSize: 50, color: Colors.white, fontFamily: 'Signatra'),
+      ),
+      centerTitle: true,
       leading: CloseButton(),
-      title: Text('編集画面'),
       actions: buildEditingActions(),
     ),
     body: SingleChildScrollView(
@@ -101,13 +123,11 @@ class _EventEditingPageState extends State<EventEditingPage> {
     child: Row(
       children: [
         Expanded(child: buildDropdownField(
-          text: DateUtils.dateOnly(fromDate).month.toString() + '月' +
-              DateUtils.dateOnly(fromDate).day.toString() + '日'     ,
+          text: DateFormat('M月d日').format(fromDate)    ,
           onClicked:()=> pickFromDateTime(pickDate:true)
         )),
         Expanded(child: buildDropdownField(
-            text: DateUtils.dateOnly(fromDate).hour.toString() +'時' +
-                DateUtils.dateOnly(fromDate).minute.toString() + '分' ,
+            text: DateFormat('HH時MM分').format(fromDate)  ,
             onClicked:()=> pickFromDateTime(pickDate:false)
         ))
 
@@ -120,14 +140,12 @@ class _EventEditingPageState extends State<EventEditingPage> {
     child: Row(
       children: [
         Expanded(child: buildDropdownField(
-            text: DateUtils.dateOnly(toDate).month.toString() + '月' +
-                DateUtils.dateOnly(toDate).day.toString() + '日'     ,
-            onClicked:() => pickToDateTime(pickDate:true),
+            text: DateFormat('M月d日').format(fromDate)    ,
+            onClicked:()=> pickFromDateTime(pickDate:true)
         )),
         Expanded(child: buildDropdownField(
-            text: DateUtils.dateOnly(toDate).hour.toString() +'時' +
-                DateUtils.dateOnly(toDate).minute.toString() + '分' ,
-            onClicked:()=> pickToDateTime(pickDate:false),
+            text: DateFormat('HH時MM分').format(fromDate)  ,
+            onClicked:()=> pickFromDateTime(pickDate:false)
         ))
 
       ],
@@ -215,16 +233,23 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
     if(isValid){
       final event = Event(
-          titel: titleController.text,
+          title: titleController.text,
           description: 'Description',
           from: fromDate,
           to: toDate,
           isAllDay:false,
       );
 
+      final isEditing = widget.event != null;
       final provider = Provider.of<EventProvider>(context,listen: false);
-      provider.addEvent(event);
-      Navigator.of(context).pop();
+
+      if(isEditing){
+        provider.editEvent(event, widget.event!);
+        Navigator.of(context).pop();
+      }else {
+        provider.addEvent(event);
+        Navigator.of(context).pop();
+      }
     }
   }
 }

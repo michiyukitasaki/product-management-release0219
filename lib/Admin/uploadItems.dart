@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eshop5nofirebase/Admin/adminShiftOrders.dart';
-import 'package:eshop5nofirebase/Authentication/authenication.dart';
 import 'package:eshop5nofirebase/Authentication/login.dart';
 import 'package:eshop5nofirebase/Widgets/loadingWidget.dart';
 import 'package:eshop5nofirebase/main.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:path_provider/path_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+import '../Authentication/authenticScreen.dart';
 // import 'package:image/image.dart' as ImD;
 
 class UploadPage extends StatefulWidget {
@@ -24,7 +25,13 @@ class _UploadPageState extends State<UploadPage>
   TextEditingController _descriptiontextEditingController = TextEditingController();
   TextEditingController _pricetextEditingController = TextEditingController();
   TextEditingController _titletextEditingController = TextEditingController();
-  TextEditingController _shortInftextEditingController = TextEditingController();
+  TextEditingController _weighttextEditingController = TextEditingController();
+  TextEditingController _sizetextEditingController = TextEditingController();
+  TextEditingController _agetextEditingController = TextEditingController();
+  TextEditingController _productfuturetextEditingController = TextEditingController();
+  TextEditingController _thermatextEditingController = TextEditingController();
+  TextEditingController _contentpercenttextEditingController = TextEditingController();
+  TextEditingController _selldatetextEditingController = TextEditingController();
   String productId = DateTime.now().millisecondsSinceEpoch.toString();
   bool uploading = false;
 
@@ -93,11 +100,7 @@ class _UploadPageState extends State<UploadPage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.shop_two,
-              color: Colors.white,
-              size: 200,
-            ),
+            Image.asset('images/mainlogo.jpg'),
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: ElevatedButton(
@@ -107,7 +110,7 @@ class _UploadPageState extends State<UploadPage>
                       borderRadius: BorderRadius.circular(10),
                     )),
                 child: Text(
-                  'Add New Items',
+                  '商品情報を追加',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -257,7 +260,7 @@ class _UploadPageState extends State<UploadPage>
                   style: TextStyle(color: Colors.deepPurpleAccent),
                   controller: _titletextEditingController,
                   decoration: InputDecoration(
-                      hintText: 'Title',
+                      hintText: '商品名',
                       hintStyle: TextStyle(
                         color: Colors.deepPurpleAccent,
                       ),
@@ -274,9 +277,9 @@ class _UploadPageState extends State<UploadPage>
              width: 250,
              child: TextField(
                style: TextStyle(color: Colors.deepPurpleAccent),
-               controller: _shortInftextEditingController,
+               controller: _weighttextEditingController,
                decoration: InputDecoration(
-                 hintText: 'Short Info',
+                 hintText: '重量[g]',
                  hintStyle: TextStyle(
                    color: Colors.deepPurpleAccent,
                  ),
@@ -293,9 +296,9 @@ class _UploadPageState extends State<UploadPage>
                 width: 250,
                 child: TextField(
                   style: TextStyle(color: Colors.deepPurpleAccent),
-                  controller: _descriptiontextEditingController,
+                  controller: _sizetextEditingController,
                   decoration: InputDecoration(
-                      hintText: 'Description',
+                      hintText: 'サイズ[幅×高×奥]',
                       hintStyle: TextStyle(
                         color: Colors.deepPurpleAccent,
                       ),
@@ -315,7 +318,107 @@ class _UploadPageState extends State<UploadPage>
                   style: TextStyle(color: Colors.deepPurpleAccent),
                   controller: _pricetextEditingController,
                   decoration: InputDecoration(
-                      hintText: 'Price',
+                      hintText: '価格[¥]',
+                      hintStyle: TextStyle(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      border: InputBorder.none
+                  )
+                  ,
+                ),
+              ),
+            ),
+            Divider(color: Colors.pink,),
+            ListTile(
+              leading: Icon(Icons.perm_device_information,color: Colors.pink,),
+              title: Container(
+                width: 250,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.deepPurpleAccent),
+                  controller: _agetextEditingController,
+                  decoration: InputDecoration(
+                      hintText: 'ターゲット[年代]',
+                      hintStyle: TextStyle(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      border: InputBorder.none
+                  )
+                  ,
+                ),
+              ),
+            ),
+            Divider(color: Colors.pink,),
+            ListTile(
+              leading: Icon(Icons.perm_device_information,color: Colors.pink,),
+              title: Container(
+                width: 250,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.deepPurpleAccent),
+                  controller: _thermatextEditingController,
+                  decoration: InputDecoration(
+                      hintText: 'テーマ',
+                      hintStyle: TextStyle(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      border: InputBorder.none
+                  )
+                  ,
+                ),
+              ),
+            ),
+            Divider(color: Colors.pink,),
+            ListTile(
+              leading: Icon(Icons.perm_device_information,color: Colors.pink,),
+              title: Container(
+                width: 250,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.deepPurpleAccent),
+                  controller: _contentpercenttextEditingController,
+                  decoration: InputDecoration(
+                      hintText: '配合割合',
+                      hintStyle: TextStyle(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      border: InputBorder.none
+                  )
+                  ,
+                ),
+              ),
+            ),
+            Divider(color: Colors.pink,),
+            ListTile(
+              leading: Icon(Icons.perm_device_information,color: Colors.pink,),
+              title: Container(
+                width: 250,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.deepPurpleAccent),
+                  controller: _productfuturetextEditingController,
+                  decoration: InputDecoration(
+                      hintText: '商品特徴',
+                      hintStyle: TextStyle(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      border: InputBorder.none
+                  )
+                  ,
+                ),
+              ),
+            ),
+            Divider(color: Colors.pink,),
+            ListTile(
+              leading: Icon(Icons.perm_device_information,color: Colors.pink,),
+              title: Container(
+                width: 250,
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.deepPurpleAccent),
+                  controller: _selldatetextEditingController,
+                  decoration: InputDecoration(
+                      hintText: '商品特徴',
                       hintStyle: TextStyle(
                         color: Colors.deepPurpleAccent,
                       ),
@@ -339,8 +442,13 @@ class _UploadPageState extends State<UploadPage>
       _descriptiontextEditingController.clear();
       _titletextEditingController.clear();
       _pricetextEditingController.clear();
-      _shortInftextEditingController.clear();
-
+      _sizetextEditingController.clear();
+      _weighttextEditingController.clear();
+      _productfuturetextEditingController.clear();
+      _agetextEditingController.clear();
+      _thermatextEditingController.clear();
+      _contentpercenttextEditingController.clear();
+      _selldatetextEditingController.clear();
     });
   }
 
@@ -362,13 +470,19 @@ class _UploadPageState extends State<UploadPage>
   saveItemInfo(String? downloadUrl){
     final itemsRef = FirebaseFirestore.instance.collection('items');
     itemsRef.doc(productId).set({
-      'shortInfo':_shortInftextEditingController.text.trim(),
+      'size':_sizetextEditingController.text.trim(),
     'longDescription':_descriptiontextEditingController.text.trim(),
       'price':int.parse(_pricetextEditingController.text),
       'publishedDate':DateTime.now(),
       'status': 'available',
       'thumbnailUrl':downloadUrl,
       'title':_titletextEditingController.text.trim(),
+      'weight':_weighttextEditingController.text.trim(),
+      'productfuture':_productfuturetextEditingController.text.trim(),
+      'therma':_thermatextEditingController.text.trim(),
+      'age':_agetextEditingController.text.trim(),
+      'contentpercent':_contentpercenttextEditingController.text.trim(),
+      'selldate':_selldatetextEditingController.text.trim(),
       });
     setState(() {
       file = null;
@@ -376,8 +490,14 @@ class _UploadPageState extends State<UploadPage>
       productId = DateTime.now().millisecondsSinceEpoch.toString();
       _descriptiontextEditingController.clear();
       _titletextEditingController.clear();
-      _shortInftextEditingController.clear();
       _pricetextEditingController.clear();
+      _sizetextEditingController.clear();
+      _weighttextEditingController.clear();
+      _productfuturetextEditingController.clear();
+      _agetextEditingController.clear();
+      _thermatextEditingController.clear();
+      _contentpercenttextEditingController.clear();
+      _selldatetextEditingController.clear();
     });
   }
 

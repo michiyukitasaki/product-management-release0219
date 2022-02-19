@@ -19,7 +19,7 @@
 //
 //
 //
-// Widgets sourceInfo(ItemModel model, BuildContext context,
+// Widgets sourceInfo(ItemModel calendar_model, BuildContext context,
 //     {Color background})
 // {
 //

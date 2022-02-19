@@ -33,7 +33,7 @@ class CustomTextField extends StatelessWidget
           border: InputBorder.none,
           prefixIcon: Icon(
             data,
-            color: Theme.of(context).primaryColor,
+            color: Colors.pink,
           ),
           fillColor: Theme.of(context).primaryColor,
           hintText: hintText

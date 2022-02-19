@@ -4,6 +4,7 @@ import 'package:eshop5nofirebase/Models/item.dart';
 // import 'package:e_shop/Models/item.dart';
 import 'package:flutter/material.dart';
 import '../Store/storehome.dart';
+import '../google_sheets/Model_google/item_google_model.dart';
 
 
 class OrderCard extends StatelessWidget {
@@ -17,10 +18,10 @@ class OrderCard extends StatelessWidget {
 
 
 
-Widget sourceInfo(ItemModel model, BuildContext context,
-    {required Color background})
+Widget sourceInfoChouse(googleItemModel model, BuildContext context,
+    {Color? background, required Function() removeCartFunction})
 {
   var width =  MediaQuery.of(context).size.width;
 
-  return  Container();
+  return  Container(child: Text('OK'),);
 }

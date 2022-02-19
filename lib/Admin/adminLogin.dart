@@ -11,19 +11,19 @@ class AdminSignInPage extends StatelessWidget {
       appBar: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.pink,Colors.lightGreenAccent],
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end:  const FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp,
-                )
+              gradient: LinearGradient(
+                colors: [Colors.green,Colors.cyanAccent],
+                begin: const FractionalOffset(0.0, 0.0),
+                end:  const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp,
+              ),
             ),
           ),
           title: Text(
-            'e-Shop',
+            '管理者ページ',
             style: TextStyle(
-                fontSize: 55,
+                fontSize: 35,
                 color: Colors.white,
                 fontFamily: 'Signatra'
             ),
@@ -57,18 +57,19 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
-        gradient: LinearGradient(
-        colors: [Colors.pink,Colors.lightGreenAccent],
-        begin: const FractionalOffset(1.0, 0.0),
-        end:  const FractionalOffset(0.0, 0.0),
-        stops: [0.0, 1],
-        tileMode: TileMode.clamp,
-    )),
+          gradient: LinearGradient(
+            colors: [Colors.green,Colors.cyanAccent],
+            begin: const FractionalOffset(0.0, 0.0),
+            end:  const FractionalOffset(1.0, 0.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+          ),
+        ),
             child:Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                child: Image.asset("images/admin.jpg"),
+                child: Image.asset("images/mainlogo.jpg"),
                 height: 240,
                 width: 240,
               ),

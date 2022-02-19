@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemModel {
   String? title;
-  String? shortInfo;
+  // String? shortInfo;
   Timestamp? publishedDate;
   String? thumbnailUrl;
   String? longDescription;
@@ -11,7 +11,7 @@ class ItemModel {
 
   ItemModel(
       {required this.title,
-        required this.shortInfo,
+        // required this.shortInfo,
         required this.publishedDate,
         required this.thumbnailUrl,
         required this.longDescription,
@@ -20,7 +20,7 @@ class ItemModel {
 
   ItemModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
-    shortInfo = json['shortInfo'];
+    // shortInfo = json['shortInfo'];
     publishedDate = json['publishedDate'];
     thumbnailUrl = json['thumbnailUrl'];
     longDescription = json['longDescription'];
@@ -31,7 +31,7 @@ class ItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['title'] = this.title;
-    data['shortInfo'] = this.shortInfo;
+    // data['shortInfo'] = this.shortInfo;
     data['price'] = this.price;
     if (this.publishedDate != null) {
       data['publishedDate'] = this.publishedDate;

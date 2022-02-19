@@ -8,8 +8,9 @@ import 'package:provider/provider.dart';
 
 class MyAppBar extends StatelessWidget with PreferredSizeWidget
 {
+  final String? title;
   final PreferredSizeWidget? bottom;
-  MyAppBar({this.bottom});
+  MyAppBar({this.bottom,this.title});
 
 
   @override
@@ -21,20 +22,20 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget
       ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.pink,Colors.lightGreenAccent],
-                begin: const FractionalOffset(0.0, 0.0),
-                end:  const FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
+            gradient: LinearGradient(
+              colors: [Colors.green,Colors.cyanAccent],
+              begin: const FractionalOffset(0.0, 0.0),
+              end:  const FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
           ),
         ),
       centerTitle: true,
       title: Text(
-        'e-Shop',
+        title!,
         style: TextStyle(
-            fontSize: 55,
+            fontSize: 35,
             color: Colors.white,
             fontFamily: 'Signatra'
         ),
@@ -43,7 +44,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget
         actions: [
           Stack(children: [
             IconButton(
-              icon: Icon(Icons.shopping_cart,color: Colors.pink,),
+              icon: Icon(Icons.favorite_border_rounded,color: Colors.pink,),
               onPressed: (){
                 Route route = MaterialPageRoute(builder: (c) => CartPage());
                 Navigator.pushReplacement(context, route);

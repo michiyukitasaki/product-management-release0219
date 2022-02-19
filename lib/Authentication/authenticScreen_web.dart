@@ -1,3 +1,4 @@
+import 'package:eshop5nofirebase/Authentication/login_web.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -7,71 +8,55 @@ import 'register.dart';
 // import 'package:e_shop/Config/config.dart';
 
 
-class AuthenticScreen extends StatefulWidget {
+class AuthenticScreenWeb extends StatefulWidget {
   @override
-  _AuthenticScreenState createState() => _AuthenticScreenState();
+  _AuthenticScreenWebState createState() => _AuthenticScreenWebState();
 }
 
-class _AuthenticScreenState extends State<AuthenticScreen> {
+class _AuthenticScreenWebState extends State<AuthenticScreenWeb> {
 
   bool isWeb = UniversalPlatform.isWeb;
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.green,Colors.cyanAccent],
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end:  const FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp,
-                ),
-              ),
-            ),
-            title: Text(
-              '商品情報管理',
-              style: TextStyle(
-                  fontSize: 40,
-                  color: Colors.white,
-                  fontFamily: 'Signatra'
-              ),
-            ),
-            centerTitle: true,
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(Icons.lock,color: Colors.white,),
-                  text:'ログイン',),
-                Tab(
-                  icon: Icon(Icons.perm_contact_calendar,color: Colors.white,),
-                  text:'ユーザー登録',),
-              ],
-              indicatorColor: Colors.white38,
-              indicatorWeight: 5,
+    return Scaffold(
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.green,Colors.cyanAccent],
+              begin: const FractionalOffset(0.0, 0.0),
+              end:  const FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
             ),
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.green,Colors.cyanAccent],
-                begin: const FractionalOffset(0.0, 0.0),
-                end:  const FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              ),
-            ),
-            child: TabBarView(
-              children: [
-                Login(),
-                isWeb?Login() :Register(),
-              ],
+        ),
+        title: Text(
+          '商品情報管理',
+          style: TextStyle(
+              fontSize: 40,
+              color: Colors.white,
+              fontFamily: 'Signatra'
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: 1000,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.green,Colors.cyanAccent],
+              begin: const FractionalOffset(0.0, 0.0),
+              end:  const FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
             ),
           ),
-        ));
+          child: LoginWeb(),
+          ),
+      ),
+    );
   }
 }

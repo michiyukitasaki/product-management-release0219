@@ -13,15 +13,15 @@ import 'package:pdf/pdf.dart';
 import '../../PDF/invoice_service.dart';
 import '../../PDF/pdf_home_page.dart';
 
-class DitailPage extends StatefulWidget {
+class DitailWebPage extends StatefulWidget {
   final googleItemModel googleitemModel;
 
-  DitailPage({required this.googleitemModel});
+  DitailWebPage({required this.googleitemModel});
   @override
-  _DitailPageState createState() => _DitailPageState();
+  _DitailWebPageState createState() => _DitailWebPageState();
 }
 
-class _DitailPageState extends State<DitailPage> {
+class _DitailWebPageState extends State<DitailWebPage> {
   int quantityOfItems = 1;
   int number = 0;
   @override
@@ -48,7 +48,7 @@ class _DitailPageState extends State<DitailPage> {
                 fontSize: 50, color: Colors.white, fontFamily: 'Signatra'),
           ),
         ),
-        drawer: MyDrawer(),
+        // drawer: MyDrawer(),
         body: ListView(
           children: [
             Container(
@@ -61,8 +61,12 @@ class _DitailPageState extends State<DitailPage> {
                   Stack(
                     children: [
                       Center(
-                          //画像
-                          // child: Image.network(widget.itemModel.thumbnailUrl!),
+                        child:Center(
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.height*0.5,
+                              width: MediaQuery.of(context).size.height*0.5,
+                              child: Image.network(widget.googleitemModel.thumbnailUrl!)),
+                        ),
                           ),
                       Container(
                         color: Colors.grey[300],
@@ -79,7 +83,6 @@ class _DitailPageState extends State<DitailPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.network(widget.googleitemModel.thumbnailUrl!),
                           Divider(
                             height: 10,
                           ),
@@ -175,38 +178,38 @@ class _DitailPageState extends State<DitailPage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Center(
-                      child: InkWell(
-                        onTap: () async{
-                          // Route route = MaterialPageRoute(builder: (c) => PdfHomePage(googleitemmodel: widget.googleitemModel,));
-                          // Navigator.pushReplacement(context, route);
-                          final PdfInvoiceService service = PdfInvoiceService();
-                          final data = await service.createInvoice(widget.googleitemModel);
-                          service.savePdfFile("invoice_$number", data);
-                          number++;
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                            colors: [Colors.cyanAccent, Colors.greenAccent],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: [0.0, 1.0],
-                            tileMode: TileMode.clamp,
-                          )),
-                          width: MediaQuery.of(context).size.width - 40,
-                          height: 50,
-                          child: Center(
-                              child: Text(
-                            'PDFファイル作成',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          )),
-                        ),
-                      ),
-                    ),
-                  )
+                  // Padding(
+                  //   padding: EdgeInsets.only(top: 8),
+                  //   child: Center(
+                  //     child: InkWell(
+                  //       onTap: () async{
+                  //         // Route route = MaterialPageRoute(builder: (c) => PdfHomePage(googleitemmodel: widget.googleitemModel,));
+                  //         // Navigator.pushReplacement(context, route);
+                  //         final PdfInvoiceService service = PdfInvoiceService();
+                  //         final data = await service.createInvoice(widget.googleitemModel);
+                  //         service.savePdfFile("invoice_$number", data);
+                  //         number++;
+                  //       },
+                  //       child: Container(
+                  //         decoration: BoxDecoration(
+                  //             gradient: LinearGradient(
+                  //           colors: [Colors.cyanAccent, Colors.greenAccent],
+                  //           begin: const FractionalOffset(0.0, 0.0),
+                  //           end: const FractionalOffset(1.0, 0.0),
+                  //           stops: [0.0, 1.0],
+                  //           tileMode: TileMode.clamp,
+                  //         )),
+                  //         width: MediaQuery.of(context).size.width - 40,
+                  //         height: 50,
+                  //         child: Center(
+                  //             child: Text(
+                  //           'PDFファイル作成',
+                  //           style: TextStyle(color: Colors.white, fontSize: 20),
+                  //         )),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             )

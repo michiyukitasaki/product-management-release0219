@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eshop5nofirebase/DialogBox/errorDialog.dart';
+import 'package:eshop5nofirebase/google_sheets/Screen/ItemScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Admin/adminLogin.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +33,15 @@ class _LoginState extends State<Login> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              child: Image.asset("images/logo.jpg"),
-              height: 240,
-              width: 240,
+              child: Image.asset("images/mainlogo.jpg"),
+              // child: Icon(Icons.bakery_dining,size: 200,color: Colors.white,),
+              height: 200,
+              width: 200,
             ),
             Padding(
                 padding: EdgeInsets.all(8),
               child: Text(
-                'Login to your Account',
+                'ログインページ',
                 style: TextStyle(
                   color: Colors.white
                 ),
@@ -79,7 +81,7 @@ class _LoginState extends State<Login> {
               // onPressed: (){},
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.pink)),
               child: Text(
-                'Login',
+                'ログイン',
                 style: TextStyle(
                     color: Colors.white
                 ),),
@@ -97,7 +99,7 @@ class _LoginState extends State<Login> {
                   builder: (context) => AdminSignInPage()
                 )),
                 icon: Icon(Icons.nature_people,color:Colors.pink) ,
-                label: Text("I'm Admin",style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold),))
+                label: Text("管理者",style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold),))
 
           ],
         )
@@ -130,7 +132,7 @@ class _LoginState extends State<Login> {
     if (firebaseUser != null){
       readData(firebaseUser!).then((s){
         Navigator.pop(context);
-        Route route = MaterialPageRoute(builder: (c) => StoreHome());
+        Route route = MaterialPageRoute(builder: (c) => ItemHome());
         Navigator.pushReplacement(context, route);
       });
     }

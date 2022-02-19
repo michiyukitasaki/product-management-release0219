@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eshop5nofirebase/DialogBox/loadingDialog.dart';
 import 'package:eshop5nofirebase/Widgets/customTextField.dart';
+import 'package:eshop5nofirebase/google_sheets/Screen/ItemScreen.dart';
 // import 'package:eshop5nofirebase/eshop2_re/Config/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -99,7 +100,7 @@ class _RegisterState extends State<Register> {
               // onPressed: (){},
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.pink)),
               child: Text(
-                'Sign up',
+                'ユーザー登録',
                 style: TextStyle(
                   color: Colors.white
                 ),),
@@ -199,7 +200,7 @@ class _RegisterState extends State<Register> {
     if(firebaseUser != null){
       saveUserInfoToFireStore(firebaseUser!).then((value){
         Navigator.pop(context);
-        Route route = MaterialPageRoute(builder: (c) => StoreHome());
+        Route route = MaterialPageRoute(builder: (c) => ItemHome());
         Navigator.pushReplacement(context, route);
       });
     }

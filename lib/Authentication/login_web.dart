@@ -10,14 +10,14 @@ import '../DialogBox/loadingDialog.dart';
 import '../Store/storehome.dart';
 import '../Widgets/customTextField.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginWeb extends StatefulWidget {
+  const LoginWeb({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _LoginWebState createState() => _LoginWebState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginWebState extends State<LoginWeb> {
 
   final TextEditingController _emailTextEditingController = TextEditingController();
   final TextEditingController _passwordTextEditingController = TextEditingController();
@@ -35,11 +35,12 @@ class _LoginState extends State<Login> {
             Container(
               child: Image.asset("images/mainlogo.jpg"),
               // child: Icon(Icons.bakery_dining,size: 200,color: Colors.white,),
-              height: 200,
-              width: 200,
+              height: MediaQuery.of(context).size.height*0.4,
+              width: MediaQuery.of(context).size.width*0.4,
             ),
+            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
             Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(10),
               child: Text(
                 'ログインページ',
                 style: TextStyle(
@@ -49,24 +50,28 @@ class _LoginState extends State<Login> {
             ),
             Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  CustomTextField(
-                    controller: _emailTextEditingController,
-                    data: Icons.email,
-                    hintText: 'Email',
-                    isObsecure:false,
-                  ),
-                  SizedBox(height: 10,),
-                  CustomTextField(
-                    controller: _passwordTextEditingController,
-                    data: Icons.person,
-                    hintText: 'Passaword',
-                    isObsecure:true,
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.3,right:MediaQuery.of(context).size.width*0.3),
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      controller: _emailTextEditingController,
+                      data: Icons.email,
+                      hintText: 'Email',
+                      isObsecure:false,
+                    ),
+                    SizedBox(height: 10,),
+                    CustomTextField(
+                      controller: _passwordTextEditingController,
+                      data: Icons.person,
+                      hintText: 'Passaword',
+                      isObsecure:true,
+                    ),
+                  ],
+                ),
               ),
             ),
+            SizedBox(height: 30,),
             ElevatedButton(
               onPressed: () {
                 _emailTextEditingController.text.isNotEmpty &&
@@ -93,14 +98,6 @@ class _LoginState extends State<Login> {
               color: Colors.pink,
             ),
             SizedBox(height: 10,),
-            TextButton.icon(
-                onPressed: ()=>
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => AdminSignInPage()
-                )),
-                icon: Icon(Icons.nature_people,color:Colors.pink) ,
-                label: Text("管理者",style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold),))
-
           ],
         )
       ),

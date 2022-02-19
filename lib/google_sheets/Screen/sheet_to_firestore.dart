@@ -1,15 +1,18 @@
 import 'package:eshop5nofirebase/Widgets/myDrawer.dart';
-import 'package:eshop5nofirebase/google_sheets/user.dart';
-import 'package:eshop5nofirebase/google_sheets/user_form_widget.dart';
-import 'package:eshop5nofirebase/google_sheets/user_sheets_api.dart';
+import 'package:eshop5nofirebase/google_sheets/Screen/pan_sheets_api.dart';
+import 'package:eshop5nofirebase/google_sheets/Screen/product.dart';
+// import 'package:eshop5nofirebase/google_sheets/user.dart';
+// import 'package:eshop5nofirebase/google_sheets/user_form_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../navigate_users_widget.dart';
 import 'item_form_widget.dart';
+import 'navigate_users_widget.dart';
 // import 'create_sheets_page.dart';
 // import 'navigate_users_widget.dart';
 
 class SheetToFirestorePage extends StatefulWidget {
+  const SheetToFirestorePage({Key? key}) : super(key: key);
+
 
 
   @override
@@ -17,20 +20,20 @@ class SheetToFirestorePage extends StatefulWidget {
 }
 
 class _SheetToFirestorePageState extends State<SheetToFirestorePage> {
-  List<User> users = [];
+  List<Product> products = [];
   int index = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUsers();
+    getProducts();
   }
 
-  Future getUsers({int? index})async{
-    final users = await UserSheetsApi.getAll();
-
+  Future getProducts({index})async{
+    final products = await PanSheetsApi.getAll();
+    print('OK');
     setState(() {
-      this.users = users;
+      this.products = products;
     });
 
   }
@@ -40,7 +43,18 @@ class _SheetToFirestorePageState extends State<SheetToFirestorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GoogleShetts'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.green,Colors.cyanAccent],
+              begin: const FractionalOffset(0.0, 0.0),
+              end:  const FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
+        title: Text('データベースへ追加'),
         centerTitle: true,
       ),
       drawer: MyDrawer(),
@@ -49,51 +63,40 @@ class _SheetToFirestorePageState extends State<SheetToFirestorePage> {
           shrinkWrap: true,
           children: [
             ItemFormWidget(
-              user:users.isEmpty ? null : users[index],
-              onSavedUser: (user) async {
-                await UserSheetsApi.update(user.id!, user.toJson());
-                // UserSheetsApi.updateCell(
-                //     id: 4,
-                //     key: 'email',
-                //     value: 'MICHIYUKI@gmail.com');
+              product:products.isEmpty ? null : products[index],
+              // product: products[index],
+              onSavedUser: (products) async {
+                await PanSheetsApi.update(products.id!, products.toJson());
               },
             ),
             const SizedBox(height: 16,),
-            if(users.isNotEmpty) buildUserControls(),
+            buildUserControls(),
           ],
         ),
       ),
     );
 
   }
-  
+
 
   Widget buildUserControls() => Column(
     children: [
-      ButtonWidget(
-          text: 'Delete',
-          onClicked: deleteUser),
+      // ButtonWidget(
+      //     text: 'Delete',
+      //     onClicked: deleteUser),
       NavigateUsersWidget(
-        text: '${index + 1}/${users.length}Users',
+        text: '${index + 1}/${products.length} Products',
         onClickedNext:(){
-          final nextIndex = index >= users.length -1 ? 0 :index + 1;
+          final nextIndex = index >= products.length -1 ? 0 :index + 1;
           setState(() => index = nextIndex);
         },
         onClickedPrevious:(){
-          final previousIndex = index <=0 ? users.length -1 :index - 1;
+          final previousIndex = index <=0 ? products.length -1 :index - 1;
           setState(() => index = previousIndex);
         },
       ),
     ],
   );
-
-  Future deleteUser() async {
-    final user = users[index];
-    await UserSheetsApi.deleteById(user.id!);
-    final newIndex = index > 0 ? index - 1: 0;
-    await getUsers(index:newIndex);
-  }
-
 }
 
 
@@ -109,6 +112,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
+          primary:Colors.greenAccent,
           minimumSize: Size.fromHeight(50),
           shape: StadiumBorder(),),
         onPressed: onClicked,

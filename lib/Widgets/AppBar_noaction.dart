@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class MyAppBar extends StatelessWidget with PreferredSizeWidget
+class AppBarNoAction extends StatelessWidget with PreferredSizeWidget
 {
   final String? title;
   final PreferredSizeWidget? bottom;
-  MyAppBar({this.bottom,this.title});
+  AppBarNoAction({this.bottom,this.title});
 
 
   @override
@@ -41,43 +41,43 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget
         ),
       ),
       bottom: bottom,
-        actions: [
-          Stack(children: [
-            IconButton(
-              icon: Icon(Icons.favorite_border_rounded,color: Colors.pink,),
-              onPressed: (){
-                Route route = MaterialPageRoute(builder: (c) => CartPage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            Positioned(child: Stack(
-              children: [
-                Icon(
-                  Icons.brightness_1,
-                  size: 20,
-                  color: Colors.green,
-                ),
-                Positioned(
-                  top: 3,
-                  bottom: 4,
-                  left: 4,
-                  child: Consumer<CartItemCounter>(
-                      builder:(context,counter, _){
-                        return Text(
-                          (EcommerceApp5.sharedPreferences!.getStringList(EcommerceApp5.userCartList)!.length -1).toString(),
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500
-                          ),
-                        );
-                      }
-                  ),
-                )
-              ],
-            ))
-          ],)
-        ]
+        // actions: [
+        //   Stack(children: [
+        //     IconButton(
+        //       icon: Icon(Icons.favorite_border_rounded,color: Colors.pink,),
+        //       onPressed: (){
+        //         Route route = MaterialPageRoute(builder: (c) => CartPage());
+        //         Navigator.pushReplacement(context, route);
+        //       },
+        //     ),
+        //     Positioned(child: Stack(
+        //       children: [
+        //         Icon(
+        //           Icons.brightness_1,
+        //           size: 20,
+        //           color: Colors.green,
+        //         ),
+        //         Positioned(
+        //           top: 3,
+        //           bottom: 4,
+        //           left: 4,
+        //           child: Consumer<CartItemCounter>(
+        //               builder:(context,counter, _){
+        //                 return Text(
+        //                   (EcommerceApp5.sharedPreferences!.getStringList(EcommerceApp5.userCartList)!.length -1).toString(),
+        //                   style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontSize: 12,
+        //                       fontWeight: FontWeight.w500
+        //                   ),
+        //                 );
+        //               }
+        //           ),
+        //         )
+        //       ],
+        //     ))
+        //   ],)
+        // ]
     );
   }
 

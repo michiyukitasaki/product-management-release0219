@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
-import 'Authentication/login.dart';
-import 'Authentication/register.dart';
+import 'package:universal_platform/universal_platform.dart';
+import 'login.dart';
+import 'register.dart';
 // import 'package:e_shop/Config/config.dart';
 
 
@@ -12,7 +13,6 @@ class AuthenticScreen extends StatefulWidget {
 }
 
 class _AuthenticScreenState extends State<AuthenticScreen> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

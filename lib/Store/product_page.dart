@@ -4,14 +4,17 @@
 import 'package:eshop5nofirebase/Models/item.dart';
 import 'package:eshop5nofirebase/Widgets/customAppBar.dart';
 import 'package:eshop5nofirebase/Widgets/myDrawer.dart';
+import 'package:eshop5nofirebase/google_sheets/Model_google/item_google_model.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop5nofirebase/Store/storehome.dart';
 
+import '../google_sheets/Screen/ItemScreen.dart';
+
 
 class ProductPage extends StatefulWidget {
-  final ItemModel itemModel;
+  final googleItemModel googleitemModel;
 
-  ProductPage({required this.itemModel});
+  ProductPage({required this.googleitemModel});
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -38,7 +41,7 @@ class _ProductPageState extends State<ProductPage> {
               children: [
                 Stack(
                   children: [Center(
-                    child: Image.network(widget.itemModel.thumbnailUrl!),
+                    child: Image.network(widget.googleitemModel.thumbnailUrl!),
                   ),
                   Container(
                     color: Colors.grey[300],
@@ -55,15 +58,15 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.itemModel.title!,
+                        Text(widget.googleitemModel.name!,
                         style: boldTextStyle,
                         ),
                         SizedBox(height: 10,),
-                        Text(widget.itemModel.longDescription!,
+                        Text(widget.googleitemModel.sosei!,
                           style: boldTextStyle,
                         ),
                         SizedBox(height: 10,),
-                        Text("¥" + widget.itemModel.price.toString(),
+                        Text("¥" + widget.googleitemModel.price.toString(),
                           style: boldTextStyle,
                         ),
                         SizedBox(height: 10,)
@@ -74,7 +77,7 @@ class _ProductPageState extends State<ProductPage> {
                 Padding(padding: EdgeInsets.only(top: 8),
                 child: Center(
                   child: InkWell(
-                    onTap: () => checkItemInCart(widget.itemModel.shortInfo!, context),
+                    onTap: () => checkItemInCart(widget.googleitemModel.name!, context),
                     child: Container(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
