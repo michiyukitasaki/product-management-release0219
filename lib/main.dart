@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Config/config.dart';
 import 'Authentication/authenticScreen.dart';
-import 'google_sheets/Screen/pan_sheets_api.dart';
 import 'dart:io';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -83,7 +82,7 @@ Future<void> main() async {
   //         appId: "1:259648805362:web:3eb3db2fc1677905b3b36b"
   //     ));
 
-  await PanSheetsApi.init();
+  // await PanSheetsApi.init();
   EcommerceApp5.auth = FirebaseAuth.instance;
   EcommerceApp5.sharedPreferences = await SharedPreferences.getInstance();
   EcommerceApp5.firestore = FirebaseFirestore.instance;

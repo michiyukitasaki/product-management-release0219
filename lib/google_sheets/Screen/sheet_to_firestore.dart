@@ -1,5 +1,4 @@
 import 'package:eshop5nofirebase/Widgets/myDrawer.dart';
-import 'package:eshop5nofirebase/google_sheets/Screen/pan_sheets_api.dart';
 import 'package:eshop5nofirebase/google_sheets/Screen/product.dart';
 // import 'package:eshop5nofirebase/google_sheets/user.dart';
 // import 'package:eshop5nofirebase/google_sheets/user_form_widget.dart';
@@ -30,7 +29,7 @@ class _SheetToFirestorePageState extends State<SheetToFirestorePage> {
   }
 
   Future getProducts({index})async{
-    final products = await PanSheetsApi.getAll();
+    // final products = await PanSheetsApi.getAll();
     print('OK');
     setState(() {
       this.products = products;
@@ -66,7 +65,7 @@ class _SheetToFirestorePageState extends State<SheetToFirestorePage> {
               product:products.isEmpty ? null : products[index],
               // product: products[index],
               onSavedUser: (products) async {
-                await PanSheetsApi.update(products.id!, products.toJson());
+                // await PanSheetsApi.update(products.id!, products.toJson());
               },
             ),
             const SizedBox(height: 16,),

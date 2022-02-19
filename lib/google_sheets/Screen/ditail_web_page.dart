@@ -65,7 +65,12 @@ class _DitailWebPageState extends State<DitailWebPage> {
                           child: SizedBox(
                               height: MediaQuery.of(context).size.height*0.5,
                               width: MediaQuery.of(context).size.height*0.5,
-                              child: Image.network(widget.googleitemModel.thumbnailUrl!)),
+                              child: Image.network(widget.googleitemModel.thumbnailUrl!,   errorBuilder: (c, o, s) {
+                                return const Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                );
+                              },)),
                         ),
                           ),
                       Container(
